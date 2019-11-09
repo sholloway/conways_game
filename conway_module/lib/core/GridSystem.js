@@ -1,5 +1,6 @@
 /**
  * A system that draws a uniform grid.
+ * @deprecated
  */
 class GridSystem{
 	constructor(htmlCanvasContext, cellSize){

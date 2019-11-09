@@ -3,7 +3,7 @@
  * @param {number} age
  * @returns {string} color
 */
-function fillStyle(age){
+function fillStyleByAge(age){
 	if (typeof age !== 'number'){
 		throw new Error('The trait ageBasedColor requires a property "age" be set to a number.')
 	}
@@ -77,7 +77,7 @@ class Trait{
 	 * @param {object} context - The render context.
 	 */
 	process(context){
-		throw new Error('Traits must implement a process method.')
+		throw new Error(`Traits must implement a process method. ${this.constructor.name} does not.`)
 	}
 
 	/**
@@ -88,6 +88,15 @@ class Trait{
 	 */
 	toJSON(){
 		this.className = this.constructor.name;
+		return this;
+	}
+
+	copyParams(original){
+		for (var key in original){
+			if (key != 'className'){
+				this[key] = original[key];
+			}
+		}
 		return this;
 	}
 }
@@ -101,7 +110,7 @@ class ColorByAgeTrait extends Trait{
 	}
 
 	process(context){
-		context.fillStyle = fillStyle(context.entity.age)
+		context.fillStyle = fillStyleByAge(context.entity.age)
 		context.strokeStyle = 'rgb(0, 0, 0)'
 	}
 }
@@ -242,7 +251,9 @@ class StrokeStyle extends Trait{
 class FillStyle extends Trait{
 	constructor(fillStyle){
 		super()
-		this.fillStyle = fillStyle
+		if(fillStyle){
+			this.fillStyle = fillStyle
+		}
 	}
 
 	process(context){
@@ -286,7 +297,6 @@ class DarkThinLines extends Trait{
 	}
 
 	process(context){
-		//TODO Make Background #f5f5f. Background is it's own enity.
 		context.rendererContext.strokeStyle = '#757575'
 		context.rendererContext.lineWidth = 0.5
 	}

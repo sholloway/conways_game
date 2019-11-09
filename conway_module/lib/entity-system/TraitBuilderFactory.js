@@ -20,15 +20,24 @@ class TraitBuilderFactory{
 	static select(traitName){
 		let builder;
 		switch (traitName){
+			case	'DarkThinLines':
+				builder = () => { return new DarkThinLines(); };
+				break;
+			case 'FilledRectTrait':
+					builder = () => { return new FilledRectTrait(); };
+					break;
+				case 'FillStyle':
+					builder = () => { return new FillStyle(); };
+					break;
 			case 'GridPattern':
-				builder = (params) => { return new GridPattern(); };
+				builder = () => { return new GridPattern(); };
 				break;
 			case 'ProcessBoxAsRect':
-				builder = (params) => { return new ProcessBoxAsRect(); };
+				builder = () => { return new ProcessBoxAsRect(); };
 				break;
 			case 'Trait':
 			default:
-				builder = (params) => { return new Trait(); };
+				builder = () => { return new Trait(); };
 				break;
 		}
 		return builder;

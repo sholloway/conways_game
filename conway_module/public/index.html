@@ -173,11 +173,11 @@
 				if (!event.data){ //TODO: Need better error handling. Enforce that event.data is a SceneManager.
 					return;
 				}
+
+				//TODO: This process should be identical for the LifeSystem.
 				let sceneObj = JSON.parse(event.data);
 				let scene = SceneManager.fromObject(sceneObj, TraitBuilderFactory.select);
 				let htmlCanvasContext = gridCanvas.getContext('2d');
-				htmlCanvasContext.strokeStyle = '#757575'
-				htmlCanvasContext.lineWidth = 0.5
 				gridRender.render(scene);
 			}
 
