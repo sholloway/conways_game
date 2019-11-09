@@ -37,7 +37,7 @@ class TraitBuilderFactory{
 				break;
 			case 'Trait':
 			default:
-				builder = () => { return new Trait(); };
+				throw new Error(`The TraitBuilderFactory could not provision a trait of type: ${traitName}`);
 				break;
 		}
 		return builder;

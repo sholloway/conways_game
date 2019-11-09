@@ -1,3 +1,5 @@
+const Trait = require('./Trait')
+
 /**
  * Selects a color based on the provided age.
  * @param {number} age
@@ -62,44 +64,6 @@ function fillStyleByAge(age){
 const TWO_PI = Math.PI * 2
 const DEFAULT_CIRCLE_FILL_STYLE = 'rgb(44, 193, 59)'
 const DEFAULT_CIRCLE_STROKE_STYLE = 'rgb(0, 0, 0)'
-
-/**
- * Abstract class. Defines a render-able trait that can be processed.
- */
-class Trait{
-	/**
-	 * Creates a new trait.
-	 */
-	constructor(){}
-	/**
-	 * Function that controls what the trait does.
-	 * @abstract
-	 * @param {object} context - The render context.
-	 */
-	process(context){
-		throw new Error(`Traits must implement a process method. ${this.constructor.name} does not.`)
-	}
-
-	/**
-	 * Automatically called by JSON.stringify().
-	 * Injects the original class name as a property when serialized
-	 * which an be used to rebuild a Scene after communicated from a thread.
-	 * @returns Trait
-	 */
-	toJSON(){
-		this.className = this.constructor.name;
-		return this;
-	}
-
-	copyParams(original){
-		for (var key in original){
-			if (key != 'className'){
-				this[key] = original[key];
-			}
-		}
-		return this;
-	}
-}
 
 /**
  * Sets the fill and stroke style by the entity's age.
@@ -358,6 +322,5 @@ module.exports = {
 	ProcessBoxAsRect,
 	RectOutlineTrait,
 	ScaleTransformer,
-	StrokeStyle,
-	Trait
+	StrokeStyle
 }

@@ -2,6 +2,8 @@ const chai = require('chai')
 const expect = chai.expect
 const sinon = require('sinon');
 
+const Trait = require('./../../lib/entity-system/Trait'
+)
 const {
 	CircleTrait,
 	ColorByAgeTrait,
@@ -15,8 +17,7 @@ const {
 	ProcessBoxAsRect,
 	RectOutlineTrait,
 	ScaleTransformer,
-	StrokeStyle,
-	Trait
+	StrokeStyle
 } = require('./../../lib/entity-system/traits')
 
 const {

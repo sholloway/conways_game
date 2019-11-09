@@ -60,7 +60,7 @@ class Entity{
 	initTraits(original, traitBuilderFactory){
 		this.traits = original.traits.map(traitLit => {
 			var traitBuilder = traitBuilderFactory(traitLit.className);
-			return (traitBuilder)? traitBuilder().copyParams(traitLit) : new Trait(); //BUG: Need to halt if it doesn't know the trait type. The trait type will fail when rendered.
+			return traitBuilder().copyParams(traitLit);
 		});
 		return this;
 	}
