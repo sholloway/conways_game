@@ -20,9 +20,9 @@ const {
 	StrokeStyle
 } = require('./../../lib/entity-system/traits')
 
+const Entity = require('./../../lib/entity-system/Entity');
 const {
 	Box,
-	Entity,
 	GridEntity
 } = require('./../../lib/entity-system/entities')
 
